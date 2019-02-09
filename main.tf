@@ -40,6 +40,7 @@ data "aws_iam_policy_document" "role_policy" {
       "logs:DescribeLogGroups",
       "lambda:List*",
       "lambda:Get*",
+      "lambda:UpdateFunctionConfiguration",
       "batch:Describe*",
       "xray:Get*",
       "xray:BatchGet*",
@@ -49,6 +50,10 @@ data "aws_iam_policy_document" "role_policy" {
       "states:List*",
       "states:Get*",
       "states:Describe*",
+      "cloudwatch:Get*",
+      "cloudwatch:List*",
+      "events:PutTargets",
+      "events:PutRule",
     ]
 
     resources = ["*"]
