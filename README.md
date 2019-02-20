@@ -12,7 +12,7 @@ To use this module you need to create a Terraform configuration that utilizes th
 
 ```hcl
 module "epsagon_aws_integration" {
-  source                    = "github.com/dgoradia/epsagon-terraform?ref=v2.0.0"
+  source                    = "github.com/epsagon/epsagon-terraform?ref=v2.0.0"
   epsagon_account_id        = "<EPSAGON_AWS_ACCOUNT_ID>"
   epsagon_external_id       = "<EPSAGON_AWS_EXTERNAL_ID>"
 }
