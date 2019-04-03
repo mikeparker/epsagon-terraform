@@ -1,61 +1,12 @@
-resource "aws_iam_role" "role" {
-  name               = "${var.aws_iam_role_name}"
-  assume_role_policy = "${data.aws_iam_policy_document.assume_role_policy.json}"
-}
+resource "aws_cloudformation_stack" "epsagon" {
+  name = "epsagon"
 
-resource "aws_iam_role_policy" "role" {
-  name   = "${var.aws_iam_role_name}"
-  role   = "${aws_iam_role.role.id}"
-  policy = "${data.aws_iam_policy_document.role_policy.json}"
-}
+  template_url = "https://s3.amazonaws.com/epsagon-cloudformation/auto_template.json"
+  capabilities = ["CAPABILITY_NAMED_IAM"]
 
-data "aws_iam_policy_document" "assume_role_policy" {
-  statement {
-    effect  = "Allow"
-    actions = ["sts:AssumeRole"]
-
-    principals {
-      type        = "AWS"
-      identifiers = ["arn:aws:iam::${var.epsagon_account_id}:root"]
-    }
-
-    condition {
-      test     = "StringEquals"
-      variable = "sts:ExternalId"
-      values   = ["${var.epsagon_external_id}"]
-    }
-  }
-}
-
-data "aws_iam_policy_document" "role_policy" {
-  statement {
-    effect = "Allow"
-
-    actions = [
-      "logs:PutSubscriptionFilter",
-      "logs:DescribeSubscriptionFilters",
-      "logs:DeleteSubscriptionFilter",
-      "logs:FilterLogEvents",
-      "logs:DescribeLogStreams",
-      "logs:DescribeLogGroups",
-      "lambda:List*",
-      "lambda:Get*",
-      "lambda:UpdateFunctionConfiguration",
-      "batch:Describe*",
-      "xray:Get*",
-      "xray:BatchGet*",
-      "apigateway:GET",
-      "apigateway:HEAD",
-      "apigateway:OPTIONS",
-      "states:List*",
-      "states:Get*",
-      "states:Describe*",
-      "cloudwatch:Get*",
-      "cloudwatch:List*",
-      "events:PutTargets",
-      "events:PutRule",
-    ]
-
-    resources = ["*"]
+  parameters {
+    AWSAccount = "${var.epsagon_account_id}",
+    ExternalId = "${var.epsagon_external_id}",
+    EpsagonSns = "${var.epsagon_sns_name}",
   }
 }

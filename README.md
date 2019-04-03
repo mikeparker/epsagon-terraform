@@ -15,15 +15,18 @@ module "epsagon_aws_integration" {
   source                    = "github.com/epsagon/epsagon-terraform?ref=v2.0.0"
   epsagon_account_id        = "<EPSAGON_AWS_ACCOUNT_ID>"
   epsagon_external_id       = "<EPSAGON_AWS_EXTERNAL_ID>"
-}
-
-output "epsagon_iam_role_arn" {
-  value = "${module.epsagon_aws_integration.iam_role_arn}"
+  epsagon_sns_name          = "<EPSAGON_SNS_NAME>"
 }
 ```
 
-Run Terraform and get the output IAM role ARN from it.
+Run Terraform, all resources will be created and epsagon will be configured without manual intervention.
 
-## Outputs
+## Parameters
 
-- **_iam_role_arn:_** ARN of cross account IAM role granting Epsagon access to environment. (Enter this value into Epsagon when setting up.)
+To find the right values to set for the three epsagon parameters, go to your [epsagon dashboard](https://dashboard.epsagon.com/settings/cloudformation) and click the cloudformation deploy button.
+
+![Epsagon dashboard](./img/epsagon_dashboard.png)
+
+Then copy the three values in your terraform file.
+
+![CloudFormation parameters](./img/cloudformation_params.png)
