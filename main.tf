@@ -1,3 +1,21 @@
+resource "aws_s3_bucket" "epsagon-trail" {
+  bucket = "epsagon-trail-bucket"
+
+  force_destroy = true
+
+  lifecycle_rule {
+    enabled = true
+
+    expiration {
+      days = "1"
+    }
+  }
+
+  tags {
+    Name = "Epsagon CloudTrail bucket"
+  }
+}
+
 resource "aws_cloudformation_stack" "epsagon" {
   name = "epsagon"
 
@@ -5,8 +23,9 @@ resource "aws_cloudformation_stack" "epsagon" {
   capabilities = ["CAPABILITY_NAMED_IAM"]
 
   parameters {
-    AWSAccount = "${var.epsagon_account_id}",
-    ExternalId = "${var.epsagon_external_id}",
-    EpsagonSns = "${var.epsagon_sns_name}",
+    AWSAccount         = "${var.epsagon_account_id}",
+    ExternalId         = "${var.epsagon_external_id}",
+    EpsagonSns         = "${var.epsagon_sns_name}",
+    ExternalBucketName = "${aws_s3_bucket.epsagon-trail.id}",
   }
 }
