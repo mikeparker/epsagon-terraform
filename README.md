@@ -12,21 +12,21 @@ To use this module you need to create a Terraform configuration that utilizes th
 
 ```hcl
 module "epsagon_aws_integration" {
-  source                    = "github.com/epsagon/epsagon-terraform?ref=v2.0.0"
+  source                    = "github.com/epsagon/epsagon-terraform?ref=v3.0.0"
   epsagon_account_id        = "<EPSAGON_AWS_ACCOUNT_ID>"
   epsagon_external_id       = "<EPSAGON_AWS_EXTERNAL_ID>"
   epsagon_sns_name          = "<EPSAGON_SNS_NAME>"
 }
 ```
 
-Run Terraform, all resources will be created and epsagon will be configured without manual intervention.
+Run Terraform, all resources will be created and Epsagon will be configured without manual intervention.
 
 ## Parameters
 
-To find the right values to set for the three epsagon parameters, go to your [epsagon dashboard](https://dashboard.epsagon.com/settings/cloudformation) and click the cloudformation deploy button.
+To find the right values to set for the three Epsagon parameters, go to your [Epsagon settings](https://dashboard.epsagon.com/settings/cloudformation) and click the CloudFormation deploy button:
 
 ![Epsagon dashboard](./img/epsagon_dashboard.png)
 
-Then copy the three values in your terraform file.
+Then copy the three values in your Terraform file:
 
 ![CloudFormation parameters](./img/cloudformation_params.png)
