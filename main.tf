@@ -19,7 +19,7 @@ resource "aws_s3_bucket" "epsagon-trail" {
 resource "aws_cloudformation_stack" "epsagon" {
   name = "epsagon"
 
-  template_url = "https://s3.amazonaws.com/epsagon-cloudformation/auto_template.json"
+  template_url = "https://s3.amazonaws.com/epsagon-cloudformation/terraform_template.json"
   capabilities = ["CAPABILITY_NAMED_IAM"]
 
   parameters {
