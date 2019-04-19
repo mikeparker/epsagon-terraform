@@ -23,9 +23,9 @@ resource "aws_cloudformation_stack" "epsagon" {
   capabilities = ["CAPABILITY_NAMED_IAM"]
 
   parameters {
-    AWSAccount         = "${var.epsagon_account_id}",
-    ExternalId         = "${var.epsagon_external_id}",
-    EpsagonSns         = "${var.epsagon_sns_name}",
-    ExternalBucketName = "${aws_s3_bucket.epsagon-trail.id}",
+    AWSAccount         = "${var.epsagon_account_id}"
+    ExternalId         = "${var.epsagon_external_id}"
+    EpsagonSns         = "${var.epsagon_sns_name}"
+    ExternalBucketName = "${aws_s3_bucket.epsagon-trail.id}"
   }
 }
