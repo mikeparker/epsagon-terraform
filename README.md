@@ -13,9 +13,9 @@ To use this module you need to create a Terraform configuration that utilizes th
 ```hcl
 module "epsagon_aws_integration" {
   source                    = "github.com/epsagon/epsagon-terraform?ref=3.0.3"
-  epsagon_account_id        = "<EPSAGON_AWS_ACCOUNT_ID>"
+  epsagon_account_id        = "066549572091"
   epsagon_external_id       = "<EPSAGON_AWS_EXTERNAL_ID>"
-  epsagon_sns_name          = "<EPSAGON_SNS_NAME>"
+  epsagon_sns_name          = "cloudformation-status-production"
 }
 ```
 
